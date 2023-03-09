@@ -1,7 +1,14 @@
-class NewsController {
+const Course = require('../models/Course');
+
+class SiteController {
     // [GET] Home
     index(req, res) {
-        res.render('home');
+        Course.find({})
+            .lean()
+            .then((courses) => {
+                res.render('home', { courses });
+            })
+            .catch((err) => next(err));
     }
 
     // [GET] /search
@@ -10,4 +17,4 @@ class NewsController {
     }
 }
 
-module.exports = new NewsController();
+module.exports = new SiteController();
