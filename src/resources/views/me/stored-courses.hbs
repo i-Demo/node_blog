@@ -19,10 +19,20 @@
         <td>{{this.createdAt}}</td>
         <td>
           <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
-          <a href="" class="btn btn-link">Xoá</a>
+          <a href="#" onclick="myFunc(`{{this._id}}`)" class="btn btn-link">Xoá</a>
         </td>
       </tr>
     </tbody>
     {{/each}}
   </table>
 </div>
+
+<form name="delete-course-form" method="POST"></form>
+
+<script>
+    var deleteForm = document.forms['delete-course-form'];
+    function myFunc(id) {
+      deleteForm.action = `/courses/${id}?_method=DELETE`;
+      deleteForm.submit();
+    }
+</script>

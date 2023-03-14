@@ -38,7 +38,13 @@ class CourseController {
         Course.updateOne({ _id: req.params.id }, formData)
             .then(() => res.redirect('/me/stored/courses'))
             .catch((err) => {});
-        // res.json(req.body)
+    }
+
+    // [DELETE] courses/:id/delete
+    destroy(req, res, next) {
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch((err) => {});
     }
 }
 
